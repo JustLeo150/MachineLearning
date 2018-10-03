@@ -10,7 +10,7 @@ sortObjectByDist <- function(xl, z, metricFunction = euclideanDistance)
   for (i in 1:l)
   {
     distances[i] <- c(metricFunction(xl[i, 1:n], z))
-    print(distances[i])
+   
   }
   orderedXl <- xl[order(distances), ]
   return (orderedXl)
@@ -31,16 +31,12 @@ ONN<-function(xl, z)
  plot(iris[X, 3:4], pch = 21, bg = colors[xl$Species], col = colors[xl$Species],asp=1)
 
 
-
-
- 
  
 for(i in seq(0, 7, 0.07)){
   for(j in seq(0, 3, 0.1))
   {
     z <- c(i, j)
     class <- ONN(xl, z)
-
     points(z[1], z[2], pch = 1, bg = colors[class],col=colors[class])
   }
 }
