@@ -7,20 +7,23 @@ euclideanDistance <- function(u, v)
 sortObjectsByDist <- function(xl, z, metricFunction =
                                 euclideanDistance)
 {
+  
   l <- dim(xl)[1]
   n <- dim(xl)[2] - 1
   distances <- matrix(NA, l, 2)
+  
   for (i in 1:l)
   {
     distances[i, ] <- c(i, metricFunction(xl[i, 1:n], z))
   }
+  
   orderedXl <- xl[order(distances[, 2]), ]
   return (orderedXl);
 }
 
-knn <- function(xl, z, k)
+knn <- function(xl, z, k,orderedXl)
 {
-  orderedXl <- sortObjectsByDist(xl, z)
+
   n <- dim(orderedXl)[2] - 1
   classes <- orderedXl[1:k, n + 1]
   counts <- table(classes)
@@ -31,39 +34,48 @@ knn <- function(xl, z, k)
 
 LOO = function(xl,class) {
   n = dim(xl)[1];
-  loo = rep(0, n) 
+  loo = rep(0, n-1) 
+  
     for(i in 1:n){
-      for(k in 1:n){
-        X = xl[-i, 1:3]
-        u = xl[i, 1:2]
-        test=knn(X,u,k)
-        if(test != class[i]){
+      X=xl[-i, 1:3]
+      u=xl[i, 1:2]
+      orderedXl <- sortObjectByDist(X, u)
+      
+      for(k in 1:(n-1)){
+        test=knn(X,u,k,orderedXl)
+        if(colors[test] != colors[class[i]]){
           loo[k] = loo[k]+1;
         
       }
     } 
-  }
+    }
+  
   loo = loo / n
   x = 1:length(loo)
   y = loo
+  
   plot(x, y,main ="LOO for KNN(k)", xlab="k", ylab="LOO", type = "l")
-  help(plot)
   min = which.min(loo)
+  lOOmin=round(loo[min],3)
   points(min, loo[min], pch = 21, col = "red",bg = "red")
-  label = paste("   K = ", min, "\n", "   LOO = ", loo[min], sep = "")
-  text(min, loo[min], labels = label, pos = 3, col = "red")
+  label = paste("   K = ", min, "\n", "   LOO = ", lOOmin, sep = "")
+  text(min, lOOmin, labels = label, pos = 3, col = "red")
+  
   map(min);
 }
 
 map = function(k){
-  text <- paste("Map classificaton with k = ", k)
-  plot(iris[X, 3:4],main=text, pch = 21, bg = colors[xl$Species], col = colors[xl$Species])
-  for(i in seq(0, 7, 0.10)){
-    for(j in seq(0,3,0.05))
-    {
+  text <- paste("Map classificaton for KNN with k = ", k)
+  plot(iris[, 3:4],main=text, pch = 21, bg = colors[xl$Species], col = colors[xl$Species],asp='1')
+  
+  for(i in seq(0, 7, 0.1)){
+    for(j in seq(0,3,0.08)){
+      
       z <- c(i, j)
-      class <- knn(xl, z,k)
+      orderedXl <- sortObjectByDist(xl, z)
+      class <- knn(xl, z,k,orderedXl)
       points(z[1], z[2], pch = 1, bg = colors[class],col=colors[class])
+      
     }
   }
 }
@@ -72,10 +84,10 @@ map = function(k){
 colors <- c("setosa" = "red", "versicolor" = "green3",
             "virginica" = "blue")
 par(mfrow = c(1, 2))
-X<-sample(c(1:150),30,replace=TRUE)
-xl <- iris[X, 3:5] 
-class <- iris[X, 5]
+xl <- iris[, 3:5] 
+class <- iris[, 5]
 LOO(xl,class)
+
 
 
 
