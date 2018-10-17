@@ -38,7 +38,7 @@ __функция оценки близости__  <br><a href="https://imgbb.com
 чрезмерно устойчив и вырождается в константу. Таким образом, крайние значения
 k нежелательны. На практике оптимальное k подбирается по критерию
 скользящего контроля LOO.
-
+<a href="https://ibb.co/iOquQf"><img src="https://thumb.ibb.co/iOquQf/KNN-PNG.png" alt="KNN-PNG" border="0"></a>
 <br><img src="https://cdn1.savepice.ru/uploads/2018/10/17/b2ef32aa15e1acf41c412d2d15e7da73-full.png" border="0"/>
 
 ## Алгоритм k взвешенных ближайших соседей ##
