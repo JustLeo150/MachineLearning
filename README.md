@@ -31,7 +31,7 @@ __Недостатки:__
 
 __Алгоритм k ближайших соседей – kNN__ относит объект u к тому классу,
 элементов которого больше среди k ближайших соседей x.
-__функция оценки близости__ <br><a href="https://imgbb.com/"><img src="https://image.ibb.co/g8GRPU/2.png" alt="2" border="0"></a>
+__функция оценки близости__ <br><img src="https://cdn1.savepice.ru/uploads/2018/10/17/b2ef32aa15e1acf41c412d2d15e7da73-full.png" border="0"/>
 
 При k = 1 получаем метод ближайшего соседа
 и, соответственно, неустойчивость к шуму, при k = l, наоборот, алгоритм
@@ -49,7 +49,7 @@ __k__ ближайших к __U__ объектов, и объект u относ
 где,<img src="https://cdn1.savepice.ru/uploads/2018/10/17/d346d2b6aef1cd82c1dc89025fbd4bc3-full.png" border="0"/> — строго убывающая последовательность вещественных весов, задающая
 вклад i-го соседа при классификации объекта u.
 
-<img src="https://preview.ibb.co/eqQBPU/PNG_KWNN_with_LOO.png" alt="PNG_KWNN_with_LOO" border="0"><br>
+<img src="https://cdn1.savepice.ru/uploads/2018/10/17/c259271a25513793bfec663eb2f4d8ee-full.png" border="0"/>
 я решил использовать весы такого вида
 ```
 weightsKWNN = function(i, k)
