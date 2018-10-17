@@ -48,7 +48,7 @@ __k__ ближайших к __U__ объектов, и объект u относ
 где,<img src="https://cdn1.savepice.ru/uploads/2018/10/17/d346d2b6aef1cd82c1dc89025fbd4bc3-full.png" border="0"/> — строго убывающая последовательность вещественных весов, задающая
 вклад i-го соседа при классификации объекта u.
 
-[URL=http://www.picshare.ru/view/9312474/][IMG]http://www.picshare.ru/uploads/181017/OCOivrYsek_thumb.jpg[/IMG][/URL]
+<a href="http://www.picshare.ru/view/9312474/" target="_blank"><img src="http://www.picshare.ru/uploads/181017/OCOivrYsek_thumb.jpg" border="0" title="Хостинг картинок PicShare.ru"></a>
 я решил использовать весы такого вида
 ```
 weightsKWNN = function(i, k)
