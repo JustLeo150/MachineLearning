@@ -31,7 +31,7 @@ __Недостатки:__
 
 __Алгоритм k ближайших соседей – kNN__ относит объект u к тому классу,
 элементов которого больше среди k ближайших соседей x.
-__функция оценки близости__ <br><img src="https://cdn1.savepice.ru/uploads/2018/10/17/b2ef32aa15e1acf41c412d2d15e7da73-full.png" border="0"/>
+__функция оценки близости__  <br><a href="https://imgbb.com/"><img src="https://image.ibb.co/g8GRPU/2.png" alt="2" border="0"></a>
 
 При k = 1 получаем метод ближайшего соседа
 и, соответственно, неустойчивость к шуму, при k = l, наоборот, алгоритм
@@ -39,7 +39,7 @@ __функция оценки близости__ <br><img src="https://cdn1.save
 k нежелательны. На практике оптимальное k подбирается по критерию
 скользящего контроля LOO.
 
-<a href="https://ibb.co/gfGt4U"><img src="https://preview.ibb.co/cLerr9/KNNwith_LOO.png" alt="KNNwith_LOO" border="0"></a>
+<br><img src="https://cdn1.savepice.ru/uploads/2018/10/17/b2ef32aa15e1acf41c412d2d15e7da73-full.png" border="0"/>
 
 ## Алгоритм k взвешенных ближайших соседей ##
 Существует и альтернативный вариант метода kNN: в каждом классе выбирается
