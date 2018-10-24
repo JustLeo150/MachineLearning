@@ -39,7 +39,7 @@ __функция оценки близости__  <br><a href="https://imgbb.com
 k нежелательны. На практике оптимальное k подбирается по критерию
 скользящего контроля LOO.
 
-<a href="http://www.picshare.ru/view/9312473/" target="_blank"><img src="http://www.picshare.ru/uploads/181017/U67LcXbDz9.jpg" border="0" width="1486" height="524" title="Хостинг картинок PicShare.ru"></a>
+<a href="http://www.picshare.ru/view/9323814/" target="_blank"><img src="http://www.picshare.ru/uploads/181024/4kQ6aAasoc.jpg" border="0" width="1339" height="688" title="Хостинг картинок PicShare.ru"></a>
 ## Алгоритм k взвешенных ближайших соседей ##
 Существует и альтернативный вариант метода kNN: в каждом классе выбирается
 __k__ ближайших к __U__ объектов, и объект u относится к тому классу, для
@@ -48,7 +48,7 @@ __k__ ближайших к __U__ объектов, и объект u относ
 где,<img src="https://cdn1.savepice.ru/uploads/2018/10/17/d346d2b6aef1cd82c1dc89025fbd4bc3-full.png" border="0"/> — строго убывающая последовательность вещественных весов, задающая
 вклад i-го соседа при классификации объекта u.
 
-<a href="http://www.picshare.ru/view/9312474/" target="_blank"><img src="http://www.picshare.ru/uploads/181017/OCOivrYsek.jpg" border="0" width="1314" height="524" title="Хостинг картинок PicShare.ru"></a>
+<a href="http://www.picshare.ru/view/9323815/" target="_blank"><img src="http://www.picshare.ru/uploads/181024/06L9SB2j3y.jpg" border="0" width="1255" height="730" title="Хостинг картинок PicShare.ru"></a>
 я решил использовать весы такого вида
 ```
 weightsKWNN = function(i, k)
