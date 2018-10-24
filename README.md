@@ -12,7 +12,7 @@ __Метрические методы обучения__ — методы, ос�
 Алгоритм ближайшего соседа – 1NN относит классифицируемый объект
 u ∈ X к тому классу, которому принадлежит его ближайший сосед:
 <a href="http://www.picshare.ru/view/9323818/" target="_blank"><img src="http://www.picshare.ru/uploads/181024/e62rhZBtiL.png" border="0" width="1255" height="730" title="Хостинг картинок PicShare.ru"></a>
-<a href="http://www.picshare.ru/view/9323819/" target="_blank"><img src="http://www.picshare.ru/uploads/181024/IiiHe713B7.png" border="0" width="1072" height="551" title="Хостинг картинок PicShare.ru"></a>
+
 __Преимуществ:__
 <ul>
   <li>Простота реализации.</li>
@@ -47,7 +47,7 @@ __k__ ближайших к __U__ объектов, и объект u относ
 где,<img src="https://cdn1.savepice.ru/uploads/2018/10/17/d346d2b6aef1cd82c1dc89025fbd4bc3-full.png" border="0"/> — строго убывающая последовательность вещественных весов, задающая
 вклад i-го соседа при классификации объекта u.
 
-<a href="http://www.picshare.ru/view/9323815/" target="_blank"><img src="http://www.picshare.ru/uploads/181024/06L9SB2j3y.jpg" border="0" width="1255" height="730" title="Хостинг картинок PicShare.ru"></a>
+<a href="http://www.picshare.ru/view/9323825/" target="_blank"><img src="http://www.picshare.ru/uploads/181024/16qufNaL13.png" border="0" width="1004" height="584" title="Хостинг картинок PicShare.ru"></a>
 я решил использовать весы такого вида
 ```
 weightsKWNN = function(i, k)
