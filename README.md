@@ -13,7 +13,7 @@ __Метрические методы обучения__ — методы, ос�
 u ∈ X к тому классу, которому принадлежит его ближайший сосед:
 
 <a href="http://www.picshare.ru/view/9312477/" target="_blank"><img src="http://www.picshare.ru/uploads/181017/84uQkCZ7F7.jpg" border="0" width="811" height="524" title="Хостинг картинок PicShare.ru"></a>
-
+<a href="http://www.picshare.ru/view/9323815/" target="_blank"><img src="http://www.picshare.ru/uploads/181024/06L9SB2j3y.jpg" border="0" width="1255" height="730" title="Хостинг картинок PicShare.ru"></a>
 __Преимуществ:__
 <ul>
   <li>Простота реализации.</li>
