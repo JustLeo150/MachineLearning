@@ -65,24 +65,25 @@ LOO = function(xl,class) {
   for(i in 1:(n)){
     u=xl[i, 1:2]
     v=xl[-i,1:3]
+    
     for(h in 1:20){
-      H = h/5;
+      H = h/10;
       test=Parzen(v,u,H)
+      
       if(colors[test] != colors[class[i]]){
-        
         loo[h] = loo[h]+1;
-        
-      }    
+     }    
     } 
   }
   
   loo = loo / n
   x = seq(0.1,2,0.1)
   plot(x, loo,main ="LOO for PW(H)", xlab="h", ylab="LOO", type = "l")
+  
   min=which.min(loo)
   lOOmin=round(loo[min],3)
-  xmin=min*3
   minX=min/10
+  
   points(minX, loo[min], pch = 21, col = "red",bg = "red")
   label = paste("   H = ", minX, "\n", "   LOO = ", lOOmin, sep = "")
   text(minX, lOOmin, labels = label, pos=4, col = "red")
