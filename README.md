@@ -56,7 +56,7 @@ __k__ ближайших к __U__ объектов, и объект u относ
 где,<img src="https://cdn1.savepice.ru/uploads/2018/10/17/d346d2b6aef1cd82c1dc89025fbd4bc3-full.png" border="0"/> — строго убывающая последовательность вещественных весов, задающая
 вклад i-го соседа при классификации объекта u.
 
-<a href="http://www.picshare.ru/view/9323825/" target="_blank"><img src="http://www.picshare.ru/uploads/181024/16qufNaL13.png" border="0" width="1004" height="584" title="Хостинг картинок PicShare.ru"></a>
+![LOO для KWNN...](KWNN/KWNNPNG.png) 
 я решил использовать весы такого вида
 ```
 weightsKWNN = function(i, k)
@@ -71,5 +71,6 @@ kNN — один из простейших алгоритмов классифи
 
 kwNN отличается от kNN, тем что учитывает порядок соседей классифицируемого объекта, улчшая качество классификации.
 Пример, показывающий преимущество метода kwNN над kNN:
-![LOO для KWNN...](KWNNPNG.png) 
+<a href="http://www.picshare.ru/view/9312480/" target="_blank"><img src="http://www.picshare.ru/uploads/181018/l7iAu3dDsZ.jpg" border="0" width="1462" height="524" title="Хостинг картинок PicShare.ru"></a>
+
 В примере передается параметр k=5. Так как Kwnn в отличии от Knn оценивает не только индекс соседа, но и его расстояние, то результат получается более точный, в этом примере это наглядно видно.
