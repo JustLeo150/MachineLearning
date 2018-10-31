@@ -47,7 +47,7 @@ __функция оценки близости__  <br><a href="https://imgbb.com
 k нежелательны. На практике оптимальное k подбирается по критерию
 скользящего контроля LOO.
 
-<a href="http://www.picshare.ru/view/9323818/" target="_blank"><img src="http://www.picshare.ru/uploads/181024/e62rhZBtiL.png" border="0" width="1004" height="584" title="Хостинг картинок PicShare.ru"></a>
+(KNN/KnnPng.png)
 ## KWNN
 Существует и альтернативный вариант метода kNN: в каждом классе выбирается
 __k__ ближайших к __U__ объектов, и объект u относится к тому классу, для
