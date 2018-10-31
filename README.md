@@ -105,7 +105,7 @@ kernelT = function(r){
   return ((1 - abs(r)) * (abs(r) <= 1)) 
 }
 ```
-![Треугольное Ядро](PW/PW_Png(Triangle).png) 
+![Треугольное Ядро](PW/PW_Png(TRIANGLE).png) 
 Квартическое 
 ```
 kernelQ = function(r){
@@ -119,5 +119,5 @@ kernelG = function(r){
   return (((2*pi)^(-1/2)) * exp(-1/2*r^2))
 }
 ```
-![Гауссовское Ядро](PW/PW_Png(Gaussian).png) 
+![Гауссовское Ядро](PW/PW_Png(GAUSSIAN).png) 
 
