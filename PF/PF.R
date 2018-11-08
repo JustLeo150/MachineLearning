@@ -66,12 +66,7 @@ potentials = function(XL,class,n,h,myError){
 
 
 drawPotentials = function(XL, classes, potentials, h, colors) {
-  x = XL[, 1]
-  y = XL[, 2]
-  xlim = c(min(x),max(x))
-  ylim = c(min(y),max(y))
-  plot(XL, bg = colors[classes], pch = 21, asp = 1, xlim = xlim, ylim = ylim, main = "потенциалы") 
-  
+  plot(XL, bg = colors[classes], pch = 21, asp = 1,  main = "потенциалы")  
   transform  = potentials / max(potentials)
   for (i in 1:n) {
       x = XL[i, 1]
