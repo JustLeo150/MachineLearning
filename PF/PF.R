@@ -1,3 +1,5 @@
+require("plotrix")
+
 euclideanDistance = function(u, v)
 {
   return (sqrt(sum((u - v)^2)))
@@ -10,7 +12,7 @@ PF = function(potentials,XL,y,h,metricFunction = euclideanDistance){
 n = dim(XL)[1]
 weights = rep(0,3)
 names(weights) = c("setosa", "versicolor", "virginica")
-for(i in 1:(n-1))
+for(i in 1:n)
 {
   x=XL[i,1:2]
   class=XL[i,3]
@@ -46,6 +48,7 @@ potentials = function(XL,class,n,h,myError){
    
       if (colors[point] != colors[class[z]]) {
         pots[z] = pots[z] + 1
+        print("up")
         break
       }
       
@@ -54,11 +57,12 @@ potentials = function(XL,class,n,h,myError){
       error = 0
       for (i in 1:n) {
         x = XL[i,1:2]
-        points=XL[,1:3]
+        points=XL[-i,1:3]
         if (colors[PF(pots,points,x, h)]!= colors[class[i]]){
           error = error + 1
         }
       }
+      print(pots)
       print(error)
   }
   return(pots)
@@ -66,29 +70,34 @@ potentials = function(XL,class,n,h,myError){
 
 
 drawPotentials = function(XL, classes, potentials, h, colors) {
-  x = XL[, 1]
-  y = XL[, 2]
-  xlim = c(min(x),max(x))
-  ylim = c(min(y),max(y))
-  plot(XL, bg = colors[classes], pch = 21, asp = 1, xlim = xlim, ylim = ylim, main = "потенциалы") 
-  
+  plot(XL, bg = colors[classes], pch = 21, asp = 1,  main = "потенциалы") 
   transform  = potentials / max(potentials)
   for (i in 1:n) {
       x = XL[i, 1]
       y = XL[i, 2]
+      if(transform[i]!=0){
       color = adjustcolor(colors[classes[i]], transform[i] /3)
       draw.circle(x, y, h, 50, border = color, col = color)
+      }
+  }
+  for (i in 1:n) {
+    x = XL[i, 1]
+    y = XL[i, 2]
+    if(transform[i]!=0){
+  text(x, y, labels = potentials[i], pos=4, col = "black")
     }
+  }
 }
+
+help(plot)
 
 
 
 colors = c("setosa" = "red", "versicolor" = "green", "virginica" = "blue", "NA" = "NA")
-#X=sample(c(1:150),60,replace=TRUE) 
 xl = iris[, 3:5] 
 class = iris[, 5]
 h = 1
-myError = 6
+myError = 5
 n = dim(xl)[1]
 Y = rep(0,n)
 text = paste("Map classificaton for PW(EP) with h = ", h)
