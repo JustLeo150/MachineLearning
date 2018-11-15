@@ -6,7 +6,7 @@ kernelG = function(r){
   return (((2*pi)^(-1/2)) * exp(-1/2*r^2))
 }
 
-Parzen = function(XL,y,h)
+Parzen = function(XL,y,h,ForMap)
 {
   
   n = dim(XL)[1]
@@ -17,20 +17,24 @@ Parzen = function(XL,y,h)
     x=XL[i,1:2]
     class=XL[i,3]
     
-    r = euclideanDistance(x,y)
- 
-    weights[class]=kernelR(r)+weights[class]
     
-    
+    r = euclideanDistance(x,y)/h
+    weights[class]=kernelG(r)+weights[class]
   }
-
   class = names(which.max(weights))
 
   if(max(weights)==0){
-    return (0)
+    if(ForMap==TRUE)
+      return("silver") 
+    else
+      return(0)
   }
   else{
-    return (max(weights))
+    if(ForMap==TRUE)
+      return(class) 
+    else
+     return(max(weights))
+    
   }
 }
 
@@ -40,8 +44,8 @@ margin = function(points,classes,point,class){
   Myclass = points[which(classes==class), ]
   OtherClass = points[which(classes!=class), ]
   
-  MyMargin = Parzen(Myclass,point[1:2],0.1)
-  OtherMargin = Parzen(OtherClass,point[1:2],0.1)
+  MyMargin = Parzen(Myclass,point[1:2],1,FALSE)
+  OtherMargin = Parzen(OtherClass,point[1:2],1,FALSE)
   
   return(MyMargin-OtherMargin)
   
@@ -61,9 +65,6 @@ stolp = function(points, classes,errors) {
   classes = classes[-badpoints]
   n = n - length(badpoints)
   etalone = data.frame()
-  etaloneClasses = c()
-
-  
   
   for (class in unique(classes)) {
     print(class)
@@ -71,24 +72,26 @@ stolp = function(points, classes,errors) {
     margins = sapply(ind, function(i) margin(pointsWE, classes, pointsWE[i,], class))
     maxMarg = ind[which.max(margins)]
     etalone=rbind(etalone, pointsWE[maxMarg,])
-    etaloneClasses=c(etaloneClasses,class)
     pointsWE=pointsWE[-maxMarg,]
     classes=classes[-maxMarg]
     n=n-1
   }
+  names(etalone) = names(points)
   # print(etalone)
   # print(etaloneClasses)
   # print(pointsWE)
   # print(classes)
- 
   while(n!=length(etalone)){
     count=0
     margins = c()
+    index = c()
     for(i in 1:n)
     {
-      margins[i] = margin(etalone, etaloneClasses, pointsWE[i,], classes[i])
-      if(margins[i]<=0){
+      m = margin(etalone, etalone[,3], pointsWE[i,], classes[i])
+      if(m<=0){
         count=count+1;
+        margins = c(margins, m)
+        index = c(index,i)
       }
     }
     
@@ -97,41 +100,39 @@ stolp = function(points, classes,errors) {
     if( count < errors )
     {
       plot(pointsWE[,1:2],col = colors[classes], pch = 21, asp = 1, main = "STOLP для парзеновского окна(Гауссовского)")
-      points(etalone[,1:2], bg = colors[etaloneClasses], pch = 21)
+      points(etalone[,1:2], bg = colors[etalone[,3]], pch = 21)
       
-      plot(etalone[,1:2],bg = colors[etaloneClasses], pch = 21, asp = 1, main = "Карта Классификации STOLP")
+      plot(etalone[,1:2],bg = colors[etalone[,3]], pch = 21, asp = 1, main = "Карта Классификации STOLP")
       for(i in seq(0, 7, 0.1)){
         for(j in seq(0,3,0.1)){
           z = c(i, j)
-          class = Parzen(etalone,z,0.4)
-            points(z[1], z[2], pch = 1,col=colors[class])
-         
+          class = Parzen(etalone,z,1,TRUE)
+           points(z[1], z[2], pch = 1,col=colors[class])
         }
       }
       break;
     }
     
-    MinMarg = which.min(margins)
-    print(min(margins))
+   # plot(pointsWE[,1:2],col = colors[classes], pch = 21, asp = 1, main = "STOLP для парзеновского окна(Гауссовского)")
+   # points(etalone[,1:2], bg = colors[etalone[,3]], pch = 21)
+   # print(etalone)
+    MinMarg = index[which.min(margins)]
     etalone = rbind(etalone, pointsWE[MinMarg,])
-    print(classes[MinMarg])
-    etaloneClasses=c(etaloneClasses,classes[MinMarg])
     pointsWE = pointsWE[-MinMarg,]
     classes = classes[-MinMarg]
     n = n - 1
+    print(etalone)
   }
- 
-
 }
 
 
 
 par(mfrow = c(1, 2))
-colors = c("setosa" = "red", "versicolor" = "green", "virginica" = "blue", "NA" = "NA")
+colors = c("setosa" = "red", "versicolor" = "green", "virginica" = "blue","grey"="grey")
 xl = iris[, 3:5] 
 classes = iris[, 5]
-stolp(xl,classes,3)
 
+stolp(xl,classes,3)
 
 
 
