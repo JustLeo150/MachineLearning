@@ -52,15 +52,23 @@ margin = function(points,classes,point,class){
 }
 
 
-
-
 stolp = function(points, classes,errors) {
   n = length(classes)
   margins = rep(0, n)
   for (i in 1:n){
     margins[i] = margin(points, classes, points[i,], classes[i])
   }
-  badpoints = which(margins < -3)
+
+  
+  #plot(1:n, sort(margins), col="black", bg="blue",pch=20,
+  #     main = "Отступы для Парзеновского окна(Гауссовского)",
+  #     ylab = "Отступ ", xlab = "Данные", col.lab = "red")
+  #lines(1:n, sort(margins), lwd = 2, col = "black")
+  #lines(c(1, n), c(0, 0), col = "grey", lwd = 2)
+  
+
+  badpoints = which(margins < 0)
+  print(length(badpoints))
   pointsWE=points[-badpoints,]
   classes = classes[-badpoints]
   n = n - length(badpoints)
@@ -101,8 +109,9 @@ stolp = function(points, classes,errors) {
     {
       plot(pointsWE[,1:2],col = colors[classes], pch = 21, asp = 1, main = "STOLP для парзеновского окна(Гауссовского)")
       points(etalone[,1:2], bg = colors[etalone[,3]], pch = 21)
-      
+      print(etalone)
       plot(etalone[,1:2],bg = colors[etalone[,3]], pch = 21, asp = 1, main = "Карта Классификации STOLP")
+      
       for(i in seq(0, 7, 0.1)){
         for(j in seq(0,3,0.1)){
           z = c(i, j)
@@ -110,7 +119,9 @@ stolp = function(points, classes,errors) {
            points(z[1], z[2], pch = 1,col=colors[class])
         }
       }
-      break;
+      points(pointsWE[,1:2],col = colors[classes], bg = colors[classes], pch = 21)
+    
+     break;
     }
     
    # plot(pointsWE[,1:2],col = colors[classes], pch = 21, asp = 1, main = "STOLP для парзеновского окна(Гауссовского)")
@@ -121,7 +132,7 @@ stolp = function(points, classes,errors) {
     pointsWE = pointsWE[-MinMarg,]
     classes = classes[-MinMarg]
     n = n - 1
-    print(etalone)
+    
   }
 }
 
@@ -131,7 +142,6 @@ par(mfrow = c(1, 2))
 colors = c("setosa" = "red", "versicolor" = "green", "virginica" = "blue","grey"="grey")
 xl = iris[, 3:5] 
 classes = iris[, 5]
-
 stolp(xl,classes,3)
 
 
