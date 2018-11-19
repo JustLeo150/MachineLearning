@@ -107,10 +107,12 @@ stolp = function(points, classes,errors) {
     print(count)
     if( count < errors )
     {
-      plot(pointsWE[,1:2],col = colors[classes], pch = 21, asp = 1, main = "STOLP для парзеновского окна(Гауссовского)")
+      plot(pointsWE[,1:2],col = colors[classes], pch = 21, asp = 1,
+           main = "STOLP для парзеновского окна(Гауссовского)", ylab = "y ", xlab = "x", col.lab = "red")
       points(etalone[,1:2], bg = colors[etalone[,3]], pch = 21)
       print(etalone)
-      plot(etalone[,1:2],bg = colors[etalone[,3]], pch = 21, asp = 1, main = "Карта Классификации STOLP")
+      plot(etalone[,1:2],bg = colors[etalone[,3]], pch = 21, asp = 1,
+           main = "Карта Классификации STOLP", ylab = "y ", xlab = "x", col.lab = "red")
       
       for(i in seq(0, 7, 0.1)){
         for(j in seq(0,3,0.1)){
