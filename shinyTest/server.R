@@ -6,10 +6,10 @@ norm = function(x, y, mu, sigma) {
 }
 
 server = function(input, output) {
-  par(mfrow = c(1, 2))
+  
   output$plot = renderPlot({
     #Создаем тестовые данные
-    
+    par(bg = 'black', fg = 'white')
 
     sigma = matrix(c(input$Ex,0,0,input$Ey), nrow = 2, ncol = 2 ) 
     mu = matrix(c(input$Mx, input$My), 1, 2)
@@ -17,9 +17,9 @@ server = function(input, output) {
     m1 = (max(abs(input$Mx),abs(input$My)))
     m2 = (max(abs(input$Ex),abs(input$Ey)))
     m = max(m1,m2)
-    q=m+2;
+    q=m+4;
     s=q/50;
-    plot(-q:q, -q:q, type = "n",asp=1,xlab="Ось x", ylab="Ось y", col.lab="orange")
+    plot(-q:q, -q:q, type = "n",asp=1,xlab="Ось x", ylab="Ось y", col.lab="orange",col.axis="orange")
     x=seq(-q, q, s)
     y=seq(-q, q, s)
     
@@ -37,7 +37,7 @@ server = function(input, output) {
       
     })
     
-    contour(x,y,z,add=T ,asp=1,lwd = 1, col = "black")
+    contour(x,y,z,add=T ,asp=1,lwd = 1, col = "white")
   })
 }
 
