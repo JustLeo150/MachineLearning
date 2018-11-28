@@ -27,7 +27,7 @@ server = function(input, output) {
       for(j in y){
         z = c(i, j)
         plot = norm(i,j,mu,sigma)
-        color = adjustcolor("red", plot*(m2/5)*10 )
+        color = adjustcolor("green", plot*(m2/5)*10 )
         points(z[1], z[2], pch = 21,col=color,bg=color)
       }
     }
