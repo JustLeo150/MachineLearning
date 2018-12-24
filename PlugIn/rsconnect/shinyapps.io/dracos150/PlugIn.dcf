@@ -1,0 +1,12 @@
+name: PlugIn
+title: PlugIn
+username:
+account: dracos150
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 615337
+bundleId: 1759157
+url: https://dracos150.shinyapps.io/PlugIn/
+when: 1544643126.78379
+asMultiple: FALSE
+asStatic: FALSE
