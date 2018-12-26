@@ -176,22 +176,22 @@ server = function(input, output) {
     xl = rbind(x1, x2)
     classes = c(y1, y2)
     
-    xl1 = xl[classes == -1,]
-    xl2 = xl[classes == 1,]
-    xl = rbind(xl1, xl2)
-    colors = c(rep("red", dim(xl1)[1]), rep("blue", dim(xl2)[1]))
-    
-    plot(xl[, ], pch = 21, bg = colors, col="black",asp = 1, xlab = "X", ylab = "Y")
-    if(input$A | input$P | input$R)
-      legend("bottomleft", legend=c(if(input$A)"adaline", if(input$P)"perseptron", if(input$R)"regression"),
-             col=c(if(input$A)"brown", if(input$P)"green", if(input$R)"orange"), lty=1, cex=1.5)
+
     
     
     # Нормализация данных
      xl = normalize(xl)
      xl = prepare(xl)
     
-
+     xl1 = xl[classes == -1,]
+     xl2 = xl[classes == 1,]
+     xl = rbind(xl1, xl2)
+     colors = c(rep("red", dim(xl1)[1]), rep("blue", dim(xl2)[1]))
+     
+     plot(xl[, ], pch = 21, bg = colors, col="black",asp = 1, xlab = "X", ylab = "Y")
+     if(input$A | input$P | input$R)
+       legend("bottomleft", legend=c(if(input$A)"adaline", if(input$P)"perseptron", if(input$R)"regression"),
+              col=c(if(input$A)"brown", if(input$P)"green", if(input$R)"orange"), lty=1, cex=1.5)
     print(input$A)
     # Поиск разделяющей поверхности
     if(input$A==TRUE)

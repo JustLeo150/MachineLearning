@@ -47,7 +47,7 @@ makeColoredText = function(text, color) {
 }
 
 makeColoredOutput = function(id, color) {
-  span(textOutput(id), style = paste0("text-align: center; color: ", color))
+  span(textOutput(id), style = paste0("text-align:center; color: ", color))
 }
 
 ui <- fluidPage(
@@ -55,21 +55,22 @@ ui <- fluidPage(
 
   titlePanel("Линейные алгоритмы"),
 
-  fluidRow(
-    column(11),
-    column(2,checkboxInput("A", "adaline", TRUE)),
 
-    column(2,checkboxInput("P", "perseptron", FALSE)),
-
-    column(1,checkboxInput("R", "regression", FALSE))
-),
-fluidRow( column(1),
+fluidRow( 
+          column(2,checkboxInput("A",  makeColoredText("Adaline", "brown"), TRUE)),
+          
+          column(2,checkboxInput("P", makeColoredText("perseptron", "green"),FALSE)),
+          
+          column(2,checkboxInput("R", makeColoredText("regression", "orange"), FALSE)),
+          column(12),
   column(nameWidth, h4("Количество итераций")),
+  column(12),
   column(inputWidth,
          fluidRow(
            column(2, makeColoredText("Adaline", "brown")),
            column(2, makeColoredText("perseptron", "green")),
            column(2, makeColoredText("regression", "orange")),
+           column(12),
            column(12),
            column(2, makeColoredOutput("adaline", "brown")),
            column(2, makeColoredOutput("perseptron", "green")),
