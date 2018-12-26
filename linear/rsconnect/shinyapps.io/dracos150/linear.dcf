@@ -1,0 +1,12 @@
+name: linear
+title: linear
+username:
+account: dracos150
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 623554
+bundleId: 1784446
+url: https://dracos150.shinyapps.io/linear/
+when: 1545860048.53892
+asMultiple: FALSE
+asStatic: FALSE
