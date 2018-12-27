@@ -49,32 +49,15 @@ regressionW = function(w, eta, xi, yi) {
 }
 
 server = function(input, output) {
-  getData = function() {
-    n1 = input$n1
-    n2 = input$n2
-    
-    covar1 = matrix(c(input$cov1X, 0, 0, input$cov1Y), 2, 2)
-    covar2 = matrix(c(input$cov2X, 0, 0, input$cov2Y), 2, 2)
-    mu1 = c(input$mu1X, input$mu1Y)
-    mu2 = c(input$mu2X, input$mu2Y)
-    x1 = mvrnorm(n1, mu1, covar1)
-    x2 = mvrnorm(n2, mu2, covar2)
-    
-    list("x1" = x1, "x2" = x2)
-
-  }
-
-
-
-    
-
   
   # Стохастический градиент
   stoh = function(xl, classes, L, updateRule, iterId) {
     #изначальная настройка алгоритма
     rows = dim(xl)[1]
     cols = dim(xl)[2]
+  
     w = runif(cols, -1 / (2 * cols), 1 / (2 * cols))
+  
     lambda = 1 / rows
     
     # начальное Q
@@ -97,14 +80,19 @@ server = function(input, output) {
         margins[i] = sum(w * xi) * yi
       }
       errorIndecies = which(margins <= 0)
-      
+     
       #выходим, если выборки полностью разделены
-      if (length(errorIndecies) == 0) {
+      if ((length(errorIndecies) == 0) & iterId=="perseptron" ) {
         break;
       }
-      
-      # выбираем случайный ошибочный объект          
+     
+      # выбираем случайный ошибочный объект
+    
+      if(length(errorIndecies)!=0)
       i = sample(errorIndecies, 1)
+      else
+      i = sample(1:rows,1)
+      
       xi = xl[i,]
       yi = classes[i]
       
@@ -129,7 +117,7 @@ server = function(input, output) {
       
       Q.prev = Q
     }
-    
+ 
     # выводим количество итераций
     output[[iterId]] = renderText({
       paste0(iter)
@@ -155,10 +143,9 @@ server = function(input, output) {
     })
 
    
-   print(input$mu1X)
     
     x.data <- rNO(input$n1,input$mu1X,input$cov1X)
-    print(x.data)
+   
     y.data <- rNO(input$n1,input$mu1Y,input$cov1Y)
    
     
@@ -192,10 +179,11 @@ server = function(input, output) {
      if(input$A | input$P | input$R)
        legend("bottomleft", legend=c(if(input$A)"adaline", if(input$P)"perseptron", if(input$R)"regression"),
               col=c(if(input$A)"brown", if(input$P)"green", if(input$R)"orange"), lty=1, cex=1.5)
-    print(input$A)
+
     # Поиск разделяющей поверхности
     if(input$A==TRUE)
     w1 = stoh(xl, classes, adaline, adalineW, iterId = "adaline")
+    
     if(input$P==TRUE)
     w2 = stoh(xl, classes, perceptron, perceptronW, iterId = "perseptron")
     if(input$R==TRUE)

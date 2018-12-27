@@ -56,16 +56,16 @@ ui <- fluidPage(
   titlePanel("Линейные алгоритмы"),
 
 
-fluidRow( 
+fluidRow( column(6,
+                fluidRow( 
           column(2,checkboxInput("A",  makeColoredText("Adaline", "brown"), TRUE)),
           
           column(2,checkboxInput("P", makeColoredText("perseptron", "green"),FALSE)),
           
-          column(2,checkboxInput("R", makeColoredText("regression", "orange"), FALSE)),
+          column(2,checkboxInput("R", makeColoredText("regression", "orange"), FALSE))),
           column(12),
   column(nameWidth, h4("Количество итераций")),
   column(12),
-  column(inputWidth,
          fluidRow(
            column(2, makeColoredText("Adaline", "brown")),
            column(2, makeColoredText("perseptron", "green")),
